@@ -81,26 +81,6 @@ export function TrollBox() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const { isConnected, connect } = useWallet()
 
-  // Update spam burst function to use dedicated spammer
-  const addSpamBurst = () => {
-    const spamCount = Math.floor(Math.random() * 4) + 3
-    
-    for (let i = 0; i < spamCount; i++) {
-      setTimeout(() => {
-        setChatMessages(prev => {
-          const newMessage = {
-            address: SPAMMER_ADDRESS,
-            content: spammerMessages[Math.floor(Math.random() * spammerMessages.length)],
-            timestamp: new Date()
-          }
-          const updated = [...prev.slice(-49), newMessage]
-          localStorage.setItem('trollbox_messages', JSON.stringify(updated))
-          return updated
-        })
-      }, i * 500)
-    }
-  }
-
   // Add regular message
   const addRegularMessage = () => {
     const newMessage = {
@@ -109,6 +89,20 @@ export function TrollBox() {
       timestamp: new Date()
     }
     setChatMessages(prev => {
+      const updated = [...prev.slice(-49), newMessage]
+      localStorage.setItem('trollbox_messages', JSON.stringify(updated))
+      return updated
+    })
+  }
+
+  // Remove addSpamBurst function and replace with single spam message
+  const addSpamMessage = () => {
+    setChatMessages(prev => {
+      const newMessage = {
+        address: SPAMMER_ADDRESS,
+        content: spammerMessages[Math.floor(Math.random() * spammerMessages.length)],
+        timestamp: new Date()
+      }
       const updated = [...prev.slice(-49), newMessage]
       localStorage.setItem('trollbox_messages', JSON.stringify(updated))
       return updated
@@ -147,35 +141,19 @@ export function TrollBox() {
       setTimeout(addRegularMessage, delay)
     }, 20000)
 
-    // Spam bursts - every 45-90 seconds (less frequent)
+    // Single spam messages - every 45-90 seconds
     const spamInterval = setInterval(() => {
       const delay = Math.floor(Math.random() * 45000) + 45000
-      setTimeout(addSpamBurst, delay)
-    }, 90000)
-
-    // Additional random single spam messages - much less frequent
-    const singleSpamInterval = setInterval(() => {
-      const delay = Math.floor(Math.random() * 30000) + 15000
       setTimeout(() => {
-        if (Math.random() > 0.7) { // Only 30% chance to send spam
-          setChatMessages(prev => {
-            const newMessage = {
-              address: addresses[Math.floor(Math.random() * addresses.length)],
-              content: spammerMessages[Math.floor(Math.random() * spammerMessages.length)],
-              timestamp: new Date()
-            }
-            const updated = [...prev.slice(-49), newMessage]
-            localStorage.setItem('trollbox_messages', JSON.stringify(updated))
-            return updated
-          })
+        if (Math.random() > 0.3) { // 70% chance to send spam
+          addSpamMessage()
         }
       }, delay)
-    }, 45000)
+    }, 90000)
 
     return () => {
       clearInterval(regularInterval)
       clearInterval(spamInterval)
-      clearInterval(singleSpamInterval)
     }
   }, [mounted])
 
