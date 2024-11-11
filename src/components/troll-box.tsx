@@ -28,11 +28,11 @@ const SPAMMER_ADDRESS = 'EWmQeCKE6MsByDGdL8yWHxhqwFEJ1kYzXnwFrPoZUvQm'
 
 // Map spammer address to their spam messages
 const spammerMessages = [
-  "@https://pump.fun/coin/6YLor2SbMdnQwAkDjWvttssL8BeTpCLTM2SQHJfpump",
-  "@https://pump.fun/coin/8bET1FYpNN9HLZzYxVEQe6wDhAzxecwsFD4CAmKxpump",
-  "check this @https://pump.fun/coin/6YLor2SbMdnQwAkDjWvttssL8BeTpCLTM2SQHJfpump",
-  "interesting project @https://pump.fun/coin/8bET1FYpNN9HLZzYxVEQe6wDhAzxecwsFD4CAmKxpump",
-  "anyone seen this? @https://pump.fun/coin/6YLor2SbMdnQwAkDjWvttssL8BeTpCLTM2SQHJfpump"
+  "@https://pump.fun/coin/CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump",
+  "@https://pump.fun/coin/CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump",
+  "check this @https://pump.fun/coin/CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump",
+  "interesting project @https://pump.fun/coin/CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump",
+  "anyone seen this? @https://pump.fun/coin/CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump"
 ]
 
 // Random colors for usernames
