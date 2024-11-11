@@ -412,7 +412,7 @@ export default function Home() {
                     <div 
                       className="mt-2 flex items-center gap-2 text-[12px] text-[#63e211]/70 font-press-start-2p bg-black/30 px-3 py-1.5 rounded cursor-pointer hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] transition-colors w-fit"
                     >
-                      Launching Soon on Pump.fun
+                      CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump
                       <Flame className="h-3 w-3" />
                     </div>
                     <Link 

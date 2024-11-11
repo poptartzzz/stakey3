@@ -23,7 +23,7 @@ export function PromoBanner() {
     }, 150) // Change color every 150ms for fast flashing
 
     return () => clearInterval(interval)
-  }, [colors.length]) // Added colors.length as dependency
+  }, [colors.length])
 
   return (
     <div className="w-full bg-[#CB6CE6] text-white overflow-hidden">
@@ -47,7 +47,7 @@ export function PromoBanner() {
             className="text-xs font-press-start-2p transition-colors duration-100"
             style={{ color: colors[colorIndex] }}
           >
-            STAKEY Official Launch on PUMP.FUN - November 12th, 2024
+            STAKEY on PUMP.FUN - CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump
           </span>
           <motion.div
             animate={{ rotate: 360 }}
