@@ -9,6 +9,24 @@ interface WalletContextType {
   disconnect: () => void
 }
 
+// Define PhantomProvider type
+interface PhantomProvider {
+  isPhantom: boolean
+  connect: () => Promise<{ publicKey: { toString: () => string } }>
+  disconnect: () => void
+  solana?: {
+    connect: () => Promise<{ publicKey: { toString: () => string } }>
+    disconnect: () => void
+    isPhantom: boolean
+  }
+}
+
+interface WindowWithPhantom extends Window {
+  phantom?: {
+    solana?: PhantomProvider
+  }
+}
+
 const WalletContext = createContext<WalletContextType>({
   isConnected: false,
   address: null,
@@ -17,63 +35,67 @@ const WalletContext = createContext<WalletContextType>({
 })
 
 export function WalletProvider({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false)
   const [isConnected, setIsConnected] = useState(false)
   const [address, setAddress] = useState<string | null>(null)
 
+  // Only run after component mounts to avoid SSR issues
+  useEffect(() => {
+    setMounted(true)
+    // Check if already connected
+    const checkConnection = async () => {
+      try {
+        const provider = (window as WindowWithPhantom)?.phantom?.solana
+        if (provider?.isPhantom) {
+          setIsConnected(false)
+          setAddress(null)
+        }
+      } catch {
+        console.log("Not already connected")
+      }
+    }
+    checkConnection()
+  }, [])
+
   const connect = async () => {
+    if (!mounted) return
+
     try {
-      if (typeof window.ethereum !== 'undefined') {
-        const accounts = await window.ethereum.request({ 
-          method: 'eth_requestAccounts' 
-        }) as string[];
-        
-        if (accounts && accounts.length > 0) {
-          setAddress(accounts[0])
+      const provider = (window as WindowWithPhantom)?.phantom?.solana
+      
+      if (provider?.isPhantom) {
+        try {
+          const response = await provider.connect()
+          setAddress(response.publicKey.toString())
           setIsConnected(true)
+        } catch (error: unknown) {
+          console.error("User rejected the connection", error)
         }
       } else {
-        console.log('Please install MetaMask!')
+        window.open('https://phantom.app/', '_blank')
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error connecting wallet:', error)
     }
   }
 
   const disconnect = () => {
-    setIsConnected(false)
-    setAddress(null)
+    if (!mounted) return
+
+    try {
+      const provider = (window as WindowWithPhantom)?.phantom?.solana
+      if (provider?.isPhantom) {
+        provider.disconnect()
+      }
+      setIsConnected(false)
+      setAddress(null)
+    } catch (error: unknown) {
+      console.error('Error disconnecting wallet:', error)
+    }
   }
 
-  useEffect(() => {
-    if (typeof window.ethereum !== 'undefined') {
-      const handleAccountsChanged = (...args: unknown[]) => {
-        const accounts = args[0] as string[];
-        if (accounts && accounts.length > 0) {
-          setAddress(accounts[0])
-          setIsConnected(true)
-        } else {
-          setAddress(null)
-          setIsConnected(false)
-        }
-      }
-
-      window.ethereum.on('accountsChanged', handleAccountsChanged)
-
-      // Check if already connected
-      window.ethereum.request({ method: 'eth_accounts' })
-        .then((accounts: unknown) => {
-          const ethAccounts = accounts as string[];
-          if (ethAccounts && ethAccounts.length > 0) {
-            setAddress(ethAccounts[0])
-            setIsConnected(true)
-          }
-        })
-
-      return () => {
-        window.ethereum.removeListener('accountsChanged', handleAccountsChanged)
-      }
-    }
-  }, [])
+  // Don't render anything until mounted to avoid hydration issues
+  if (!mounted) return null
 
   return (
     <WalletContext.Provider value={{ isConnected, address, connect, disconnect }}>

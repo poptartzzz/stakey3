@@ -3,14 +3,14 @@
 import dynamic from 'next/dynamic'
 import { Press_Start_2P } from 'next/font/google'
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowLeft, Wallet } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useWallet } from '@/app/providers'
-import { BalanceDropdown } from "@/components/balance-dropdown"
-import eth32 from 'cryptocurrency-icons/32/color/eth.png'
+import sol32 from 'cryptocurrency-icons/32/color/sol.png'
 import usdc32 from 'cryptocurrency-icons/32/color/usdc.png'
+import { SiteHeader } from "@/components/site-header"
+import { CustomImage } from "@/components/ui/custom-image"
 
 // Dynamically import components that use window
 const DepositAddress = dynamic(
@@ -34,47 +34,14 @@ export default function CashierPage() {
 
   return (
     <div className={`min-h-screen bg-black text-[#63e211] ${pressStart2P.variable} font-press-start-2p`}>
-      {/* Header */}
-      <header className="border-b border-green-900/50 bg-black/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container max-w-[1400px] flex h-20 items-center justify-between px-0">
-          <div className="flex items-center gap-6 pl-6">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/8BETbanner.png"
-                alt="8BET Logo"
-                width={300}
-                height={100}
-                className="h-20 w-auto"
-                priority
-                quality={100}
-              />
-            </Link>
-          </div>
-          <div className="flex items-center gap-4 pr-6">
-            <BalanceDropdown />
-            <Link href="/account">
-              <Button 
-                variant="outline"
-                className="border-[#63e211]/20 bg-[#1a4d1a] text-[#63e211] hover:bg-[#63e211]/20 font-press-start-2p"
-              >
-                ACCOUNT
-              </Button>
-            </Link>
-            <Button className="bg-[#63e211] text-black hover:bg-[#7fff00] shadow-md shadow-[#63e211]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 font-press-start-2p">
-              CASHIER
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      {/* Added mb-[30px] here */}
+      <SiteHeader />
       <div className="mb-[30px]" />
 
       {/* Main Content */}
       <div className="container py-8 relative">
         <div className="mb-8">
           <Link href="/">
-            <Button variant="ghost" className="gap-2 text-[#63e211] hover:bg-[#63e211]/20 font-press-start-2p">
+            <Button variant="ghost" className="gap-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p">
               <ArrowLeft className="h-4 w-4" />
               Back to Home
             </Button>
@@ -104,40 +71,40 @@ export default function CashierPage() {
 
               <TabsContent value="deposit">
                 <div className="mt-6">
-                  <Tabs defaultValue="8bet" className="w-full">
+                  <Tabs defaultValue="stakey" className="w-full">
                     <TabsList className="grid w-full grid-cols-3 bg-[#1a4d1a] font-press-start-2p">
                       <TabsTrigger 
-                        value="8bet"
+                        value="stakey"
                         className="data-[state=active]:bg-[#63e211] data-[state=active]:text-black flex items-center gap-2 font-press-start-2p"
                       >
-                        <Image
-                          src="/8betdark.png"
-                          alt="8BET"
+                        <CustomImage
+                          src="/stakeymainimage1.png"
+                          alt="STAKEY"
                           width={24}
                           height={24}
                           className="rounded-full"
                         />
-                        8BET
+                        STAKEY
                       </TabsTrigger>
                       <TabsTrigger 
-                        value="eth"
+                        value="solana"
                         className="data-[state=active]:bg-[#63e211] data-[state=active]:text-black flex items-center gap-2 font-press-start-2p"
                       >
-                        <Image
-                          src={eth32}
-                          alt="ETH"
+                        <CustomImage
+                          src={sol32.src}
+                          alt="SOLANA"
                           width={24}
                           height={24}
                           className="rounded-full"
                         />
-                        ETH
+                        SOLANA
                       </TabsTrigger>
                       <TabsTrigger 
                         value="usdc"
                         className="data-[state=active]:bg-[#63e211] data-[state=active]:text-black flex items-center gap-2 font-press-start-2p"
                       >
-                        <Image
-                          src={usdc32}
+                        <CustomImage
+                          src={usdc32.src}
                           alt="USDC"
                           width={24}
                           height={24}
@@ -147,24 +114,24 @@ export default function CashierPage() {
                       </TabsTrigger>
                     </TabsList>
                     
-                    <TabsContent value="8bet">
+                    <TabsContent value="stakey">
                       <div className="mt-6">
                         <DepositAddress 
-                          tokenName="8BET"
-                          tokenAddress="0x9fC6Dc9Aba221e2260527CFA9e2564525D451093"
-                          network="Ethereum"
-                          icon="/8betdark.png"
+                          tokenName="STAKEY"
+                          tokenAddress="5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1"
+                          network="Solana"
+                          icon="/stakeymainimage1.png"
                         />
                       </div>
                     </TabsContent>
                     
-                    <TabsContent value="eth">
+                    <TabsContent value="solana">
                       <div className="mt-6">
                         <DepositAddress 
-                          tokenName="ETH"
-                          tokenAddress="0x742d35Cc6634C0532925a3b844Bc454e4438f44e"
-                          network="Ethereum"
-                          icon={eth32.src}
+                          tokenName="SOLANA"
+                          tokenAddress="4P33jpAq7r4p7JxYnjJGb8tpoGJV7AZEJUJAm8G1FU9X"
+                          network="Solana"
+                          icon={sol32.src}
                         />
                       </div>
                     </TabsContent>
@@ -173,8 +140,8 @@ export default function CashierPage() {
                       <div className="mt-6">
                         <DepositAddress 
                           tokenName="USDC"
-                          tokenAddress="0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
-                          network="Ethereum"
+                          tokenAddress="4P33jpAq7r4p7JxYnjJGb8tpoGJV7AZEJUJAm8G1FU9X"
+                          network="Solana"
                           icon={usdc32.src}
                         />
                       </div>
@@ -185,40 +152,40 @@ export default function CashierPage() {
 
               <TabsContent value="withdraw">
                 <div className="mt-6">
-                  <Tabs defaultValue="8bet" className="w-full">
+                  <Tabs defaultValue="stakey" className="w-full">
                     <TabsList className="grid w-full grid-cols-3 bg-[#1a4d1a] font-press-start-2p">
                       <TabsTrigger 
-                        value="8bet"
+                        value="stakey"
                         className="data-[state=active]:bg-[#63e211] data-[state=active]:text-black flex items-center gap-2 font-press-start-2p"
                       >
-                        <Image
-                          src="/8betdark.png"
-                          alt="8BET"
+                        <CustomImage
+                          src="/stakeymainimage1.png"
+                          alt="STAKEY"
                           width={24}
                           height={24}
                           className="rounded-full"
                         />
-                        8BET
+                        STAKEY
                       </TabsTrigger>
                       <TabsTrigger 
-                        value="eth"
+                        value="solana"
                         className="data-[state=active]:bg-[#63e211] data-[state=active]:text-black flex items-center gap-2 font-press-start-2p"
                       >
-                        <Image
-                          src={eth32}
-                          alt="ETH"
+                        <CustomImage
+                          src={sol32.src}
+                          alt="SOLANA"
                           width={24}
                           height={24}
                           className="rounded-full"
                         />
-                        ETH
+                        SOLANA
                       </TabsTrigger>
                       <TabsTrigger 
                         value="usdc"
                         className="data-[state=active]:bg-[#63e211] data-[state=active]:text-black flex items-center gap-2 font-press-start-2p"
                       >
-                        <Image
-                          src={usdc32}
+                        <CustomImage
+                          src={usdc32.src}
                           alt="USDC"
                           width={24}
                           height={24}
@@ -228,25 +195,25 @@ export default function CashierPage() {
                       </TabsTrigger>
                     </TabsList>
                     
-                    <TabsContent value="8bet">
+                    <TabsContent value="stakey">
                       <div className="mt-6">
                         <WithdrawAddress 
-                          tokenName="8BET"
-                          tokenAddress="0x9fC6Dc9Aba221e2260527CFA9e2564525D451093"
-                          network="Ethereum"
-                          icon="/8betdark.png"
+                          tokenName="STAKEY"
+                          tokenAddress="5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1"
+                          network="Solana"
+                          icon="/stakeymainimage1.png"
                           balance="0.00"
                         />
                       </div>
                     </TabsContent>
                     
-                    <TabsContent value="eth">
+                    <TabsContent value="solana">
                       <div className="mt-6">
                         <WithdrawAddress 
-                          tokenName="ETH"
-                          tokenAddress="0xF4b7B9ab55A2eeb3bD6123B8f45B0abfFd5089c7"
-                          network="Ethereum"
-                          icon={eth32.src}
+                          tokenName="SOLANA"
+                          tokenAddress="4P33jpAq7r4p7JxYnjJGb8tpoGJV7AZEJUJAm8G1FU9X"
+                          network="Solana"
+                          icon={sol32.src}
                           balance="0.00"
                         />
                       </div>
@@ -256,8 +223,8 @@ export default function CashierPage() {
                       <div className="mt-6">
                         <WithdrawAddress 
                           tokenName="USDC"
-                          tokenAddress="0xF4b7B9ab55A2eeb3bD6123B8f45B0abfFd5089c7"
-                          network="Ethereum"
+                          tokenAddress="4P33jpAq7r4p7JxYnjJGb8tpoGJV7AZEJUJAm8G1FU9X"
+                          network="Solana"
                           icon={usdc32.src}
                           balance="0.00"
                         />

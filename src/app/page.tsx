@@ -18,7 +18,6 @@ import {
   Twitter,
   Flame,
   Banknote,
-  Copy,
   Timer
 } from 'lucide-react'
 import { 
@@ -29,6 +28,7 @@ import { Button } from "@/components/ui/button"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { usePriceStore } from "@/lib/price-service"
 import { formatPrice } from '@/lib/format-price';
+import { useEffect } from 'react';
 
 const pressStart2P = Press_Start_2P({ 
   weight: '400',
@@ -37,7 +37,22 @@ const pressStart2P = Press_Start_2P({
 })
 
 export default function Home() {
-  const { prices, volume24h, previousPrices } = usePriceStore()
+  const { prices, volume24h, previousPrices, fetchPrices } = usePriceStore()
+
+  useEffect(() => {
+    const fetchData = () => {
+      fetchPrices()
+    }
+
+    // Initial fetch
+    fetchData()
+
+    // Set up interval for price updates
+    const intervalId = setInterval(fetchData, 30000)
+
+    // Cleanup interval on unmount
+    return () => clearInterval(intervalId)
+  }, [fetchPrices])
 
   console.log('Price data:', { prices, volume24h, previousPrices });
 
@@ -52,8 +67,8 @@ export default function Home() {
           <div className="flex items-center gap-6 pl-6">
             <Link href="#" className="flex items-center gap-2">
               <Image
-                src="/8BETbanner.png"
-                alt="8BET Logo"
+                src="/stakeyweblogo.png"
+                alt="STAKEY Logo"
                 width={300}
                 height={100}
                 className="h-20 w-auto"
@@ -71,13 +86,13 @@ export default function Home() {
             <Link href="/account">
               <Button 
                 variant="outline"
-                className="border-[#63e211]/20 bg-[#1a4d1a] text-[#63e211] hover:bg-[#63e211]/20 font-press-start-2p"
+                className="border-[#63e211]/20 bg-[#1a4d1a] text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p"
               >
                 ACCOUNT
               </Button>
             </Link>
             <Link href="/cashier">
-              <Button className="bg-[#63e211] text-black hover:bg-[#7fff00] shadow-md shadow-[#63e211]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 font-press-start-2p">
+              <Button className="bg-[#63e211] text-black hover:bg-[#CB6CE6] hover:text-white shadow-md shadow-[#63e211]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 font-press-start-2p">
                 CASHIER
               </Button>
             </Link>
@@ -95,23 +110,23 @@ export default function Home() {
             <div className="flex flex-col gap-1 rounded-lg bg-gradient-to-br from-[#1a4d1a] to-[#0d260d] shadow-lg shadow-[#63e211]/10 px-3 py-2">
               <div className="flex items-center gap-2">
                 <Image
-                  src="/8betdark.png"
+                  src="/stakeymainimage1.png"
                   alt="Currency icon"
                   className="rounded-full"
                   height={24}
                   width={24}
                 />
                 <div>
-                  <div className="font-semibold font-press-start-2p text-[#63e211]">8BET Coin</div>
+                  <div className="font-semibold font-press-start-2p text-[#63e211]">STAKEY Coin</div>
                   <div className="flex items-center gap-1">
                     <div className={`text-sm font-press-start-2p ${
-                      prices['8BET'] > previousPrices['8BET'] 
+                      prices['STAKEY'] > previousPrices['STAKEY'] 
                         ? 'text-[#63e211]' 
-                        : prices['8BET'] < previousPrices['8BET'] 
+                        : prices['STAKEY'] < previousPrices['STAKEY'] 
                           ? 'text-[#ff6666]' 
                           : 'text-[#63e211]/70'
                     }`}>
-                      ${formatPrice(prices['8BET'])}
+                      ${formatPrice(prices['STAKEY'])}
                     </div>
                   </div>
                 </div>
@@ -125,28 +140,28 @@ export default function Home() {
             <nav className="space-y-1">
               <Link
                 href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#63e211]/20 hover:text-green-300 font-press-start-2p"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p"
               >
                 <LayoutDashboard className="h-4 w-4" />
                 Wagering
               </Link>
               <Link
                 href="/lottery"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#63e211]/20 hover:text-green-300 font-press-start-2p"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p"
               >
                 <Gift className="h-4 w-4" />
                 Lottery
               </Link>
               <Link
                 href="/futures"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#63e211]/20 hover:text-green-300 font-press-start-2p"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p"
               >
                 <LineChart className="h-4 w-4" />
                 Futures
               </Link>
               <Link
                 href="/rewards"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#63e211]/20 hover:text-green-300 font-press-start-2p"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p"
               >
                 <Trophy className="h-4 w-4" />
                 Rewards
@@ -154,38 +169,38 @@ export default function Home() {
             </nav>
           </div>
 
-          {/* 8BET Token Section */}
+          {/* STAKEY Token Section */}
           <div className="space-y-1">
-            <h2 className="px-3 text-xs font-semibold text-[#63e211]/50 font-press-start-2p">8BET Token</h2>
+            <h2 className="px-3 text-xs font-semibold text-[#63e211]/50 font-press-start-2p">STAKEY Token</h2>
             <nav className="space-y-1">
               <Link
                 href="/staking"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#63e211]/20 hover:text-green-300 font-press-start-2p"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p"
               >
                 <Coins className="h-4 w-4" />
                 Staking
               </Link>
               <Link
                 href="/litepaper"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#63e211]/20 hover:text-green-300 font-press-start-2p"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p"
               >
                 <FileText className="h-4 w-4" />
                 Litepaper
               </Link>
               <Link
-                href="https://app.uniswap.org/swap?outputCurrency=0x9fC6Dc9Aba221e2260527CFA9e2564525D451093&chain=ethereum"
+                href="https://pump.fun/board"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#63e211]/20 hover:text-green-300 font-press-start-2p"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p"
               >
                 <ShoppingCart className="h-4 w-4" />
-                BUY 8BET
+                BUY STAKEY
               </Link>
               <Link
-                href="https://dexscreener.com/ethereum/0x9fC6Dc9Aba221e2260527CFA9e2564525D451093"
+                href="https://dexscreener.com/solana"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#63e211]/20 hover:text-green-300 font-press-start-2p"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p"
               >
                 <LineChart className="h-4 w-4" />
                 Chart
@@ -198,19 +213,19 @@ export default function Home() {
             <h2 className="px-3 text-xs font-semibold text-[#63e211]/50 font-press-start-2p">Socials</h2>
             <nav className="space-y-1">
               <Link
-                href="https://t.me/eightbeteth"
+                href="https://t.me/stakey_arcade"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#63e211]/20 hover:text-green-300 font-press-start-2p"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p"
               >
                 <MessageCircle className="h-4 w-4" />
                 Telegram
               </Link>
               <Link
-                href="https://x.com/eightbeteth"
+                href="https://x.com/stakey_arcade"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#63e211]/20 hover:text-green-300 font-press-start-2p"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p"
               >
                 <Twitter className="h-4 w-4" />
                 Twitter
@@ -262,7 +277,7 @@ export default function Home() {
                 ].map((game, i) => (
                   <Card 
                     key={i} 
-                    className={`min-w-[220px] max-w-[220px] bg-gradient-to-br from-[#1a4d1a] to-[#0d260d] shadow-lg shadow-[#63e211]/10 backdrop-blur-sm border border-[#63e211]/20 transform transition-all duration-200 hover:scale-105 ${!game.isLive && 'opacity-50'}`}
+                    className={`min-w-[220px] max-w-[220px] bg-gradient-to-br from-[#1a4d1a] to-[#0d260d] shadow-lg hover:shadow-[#CB6CE6]/30 hover:border-[#CB6CE6]/30 backdrop-blur-sm border border-[#63e211]/20 transform transition-all duration-200 hover:scale-105 ${!game.isLive && 'opacity-50'}`}
                   >
                     <CardContent className="p-4">
                       <div className="relative aspect-video w-full overflow-hidden rounded-lg">
@@ -302,7 +317,7 @@ export default function Home() {
                         <div className="grid grid-cols-2 gap-2">
                           <Link href={game.wagerLink || '#'}>
                             <Button 
-                              className="bg-[#63e211] text-black hover:bg-[#7fff00] shadow-md shadow-[#63e211]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 font-press-start-2p text-[10px] w-full"
+                              className="bg-[#63e211] text-black hover:bg-[#CB6CE6] hover:text-white shadow-md shadow-[#63e211]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 font-press-start-2p text-[10px] w-full"
                               disabled={!game.isLive}
                             >
                               WAGER
@@ -311,7 +326,7 @@ export default function Home() {
                           <Link href={game.practiceLink || '#'}>
                             <Button 
                               variant="outline"
-                              className="border-[#ff6666] bg-[#ff6666]/20 text-[#ff6666] hover:bg-[#ff6666]/30 font-press-start-2p text-[10px] w-full"
+                              className="border-[#ff6666] bg-[#ff6666]/20 text-[#ff6666] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] hover:border-[#CB6CE6] font-press-start-2p text-[10px] w-full"
                               disabled={!game.isLive}
                             >
                               PRACTICE
@@ -353,13 +368,13 @@ export default function Home() {
                         All accounts will receive a free entry
                       </p>
                       <p className="text-xs text-[#ff6666] font-press-start-2p">
-                        Must hold 1000+ 8BET during snapshot
+                        Must hold 1000+ STAKEY during snapshot
                       </p>
                     </div>
                   </div>
                   <Link href="/lottery">
                     <Button 
-                      className="bg-[#63e211] text-black hover:bg-[#7fff00] shadow-md shadow-[#63e211]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 font-press-start-2p"
+                      className="bg-[#63e211] text-black hover:bg-[#CB6CE6] hover:text-white shadow-md shadow-[#63e211]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 font-press-start-2p"
                     >
                       ENTER LOTTERY
                     </Button>
@@ -369,45 +384,44 @@ export default function Home() {
             </Card>
           </section>
 
-          {/* 8BET Coin Stats */}
+          {/* STAKEY Coin Stats */}
           <section className="rounded-xl bg-gradient-to-br from-[#1a4d1a] to-[#0d260d] p-4 lg:p-6 backdrop-blur-sm shadow-xl shadow-[#63e211]/10 border border-[#63e211]/20">
             <div className="mb-4 lg:mb-6">
               <div className="flex items-center gap-4">
                 <Image
-                  src="/8betdark.png"
-                  alt="8BET Coin"
+                  src="/stakeymainimage1.png"
+                  alt="STAKEY Coin"
                   className="rounded-full"
                   height={48}
                   width={48}
                 />
                 <div className="flex-1">
                   <div className="flex items-center gap-3">
-                    <h2 className="text-xl lg:text-2xl font-bold text-[#63e211] font-press-start-2p">8BET COIN</h2>
+                    <h2 className="text-xl lg:text-2xl font-bold text-[#63e211] font-press-start-2p">STAKEY COIN</h2>
                   </div>
                   <div className="text-xs lg:text-sm text-[#63e211] font-press-start-2p">
                     Coin Price: <span className={`${
-                      prices['8BET'] > previousPrices['8BET'] 
+                      prices['STAKEY'] > previousPrices['STAKEY'] 
                         ? 'text-[#63e211]' 
-                        : prices['8BET'] < previousPrices['8BET'] 
+                        : prices['STAKEY'] < previousPrices['STAKEY'] 
                           ? 'text-[#ff6666]' 
                           : 'text-[#63e211]'
-                    }`}>${formatPrice(prices['8BET'])}</span> USD • 24h Volume: ${formatPrice(volume24h)}
+                    }`}>${formatPrice(prices['STAKEY'])}</span> USD • 24h Volume: ${formatPrice(volume24h)}
                   </div>
                   <div className="flex items-center gap-4">
                     <div 
-                      onClick={() => navigator.clipboard.writeText('0x9fC6Dc9Aba221e2260527CFA9e2564525D451093')}
-                      className="mt-2 flex items-center gap-2 text-[12px] text-[#63e211]/70 font-press-start-2p bg-black/30 px-3 py-1.5 rounded cursor-pointer hover:bg-black/40 transition-colors w-fit"
+                      className="mt-2 flex items-center gap-2 text-[12px] text-[#63e211]/70 font-press-start-2p bg-black/30 px-3 py-1.5 rounded cursor-pointer hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] transition-colors w-fit"
                     >
-                      0x9fC6Dc9Aba221e2260527CFA9e2564525D451093
-                      <Copy className="h-3 w-3" />
+                      Launching Soon on Pump.fun
+                      <Flame className="h-3 w-3" />
                     </div>
                     <Link 
-                      href="https://app.uniswap.org/swap?outputCurrency=0x9fC6Dc9Aba221e2260527CFA9e2564525D451093&chain=ethereum"
+                      href="https://raydium.io/swap"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2 px-3 py-1.5 bg-[#ff6666]/20 text-[#ff6666] hover:bg-[#ff6666]/30 rounded text-[10px] font-press-start-2p transition-colors"
+                      className="mt-2 px-3 py-1.5 bg-[#ff6666]/20 text-[#ff6666] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] rounded text-[10px] font-press-start-2p transition-colors"
                     >
-                      Buy 8BET on UNISWAP
+                      Buy STAKEY on RAYDIUM
                     </Link>
                   </div>
                 </div>
@@ -422,7 +436,7 @@ export default function Home() {
                 <div className="text-xs lg:text-sm text-orange-400 font-press-start-2p leading-none mt-2">↑ 0.00%</div>
               </div>
               <div>
-                <div className="text-xs lg:text-sm text-[#63e211] font-press-start-2p">8BET Burned</div>
+                <div className="text-xs lg:text-sm text-[#63e211] font-press-start-2p">STAKEY Burned</div>
                 <div className="text-xl lg:text-2xl font-bold text-[#63e211] font-press-start-2p leading-none mt-2">0</div>
                 <div className="text-xs lg:text-sm text-[#63e211] font-press-start-2p leading-none mt-2">$0.00</div>
               </div>

@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Press_Start_2P } from 'next/font/google'
 import './globals.css'
 import { WalletProvider } from './providers'
-import { Footer } from '@/components/footer'
 
 const pressStart2P = Press_Start_2P({ 
   weight: '400',
@@ -11,7 +10,7 @@ const pressStart2P = Press_Start_2P({
 })
 
 export const metadata: Metadata = {
-  title: '8BET',
+  title: 'STAKEY',
   description: 'Skill-based wagering platform',
 }
 
@@ -22,11 +21,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-black">
+      <head>
+        <script 
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined' && !window.phantom) {
+                window.phantom = { solana: null };
+              }
+            `
+          }}
+        />
+      </head>
       <body className={`${pressStart2P.variable} bg-black min-h-screen`}>
         <WalletProvider>
           <div className="min-h-screen flex flex-col bg-black">
             {children}
-            <Footer />
           </div>
         </WalletProvider>
       </body>

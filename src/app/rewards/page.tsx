@@ -4,9 +4,8 @@ import { Press_Start_2P } from 'next/font/google'
 import Link from 'next/link'
 import { ArrowLeft, Wallet, Trophy, Gift, Star, Timer, Award } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { CustomImage } from "@/components/ui/custom-image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { BalanceDropdown } from "@/components/balance-dropdown"
+import { SiteHeader } from "@/components/site-header"
 import { useWallet } from '@/app/providers'
 
 const pressStart2P = Press_Start_2P({ 
@@ -20,49 +19,14 @@ export default function RewardsPage() {
 
   return (
     <div className={`min-h-screen bg-black text-[#63e211] ${pressStart2P.variable} font-press-start-2p`}>
-      {/* Header */}
-      <header className="border-b border-green-900/50 bg-black/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="flex h-20 items-center justify-between w-full">
-          <div className="flex items-center gap-6 pl-6">
-            <Link href="/" className="flex items-center gap-2">
-              <CustomImage
-                src="/8BETbanner.png"
-                alt="8BET Logo"
-                width={300}
-                height={100}
-                className="h-20 w-auto"
-                priority
-                quality={100}
-              />
-            </Link>
-          </div>
-          <div className="flex items-center gap-4 pr-6">
-            <BalanceDropdown />
-            <Link href="/account">
-              <Button 
-                variant="outline"
-                className="border-[#63e211]/20 bg-[#1a4d1a] text-[#63e211] hover:bg-[#63e211]/20 font-press-start-2p"
-              >
-                ACCOUNT
-              </Button>
-            </Link>
-            <Link href="/cashier">
-              <Button className="bg-[#63e211] text-black hover:bg-[#7fff00] shadow-md shadow-[#63e211]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 font-press-start-2p">
-                CASHIER
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Added mb-[30px] here */}
+      <SiteHeader />
       <div className="mb-[30px]" />
 
       {/* Main Content */}
       <div className="container py-8 relative">
         <div className="mb-8">
           <Link href="/">
-            <Button variant="ghost" className="gap-2 text-[#63e211] hover:bg-[#63e211]/20 font-press-start-2p">
+            <Button variant="ghost" className="gap-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p">
               <ArrowLeft className="h-4 w-4" />
               Back to Home
             </Button>
@@ -151,7 +115,7 @@ export default function RewardsPage() {
               <CardContent className="space-y-4">
                 {[
                   { name: 'First Win', description: 'Win your first game', points: 100, completed: false },
-                  { name: 'High Roller', description: 'Place a bet of 100 8BET or more', points: 250, completed: false },
+                  { name: 'High Roller', description: 'Place a bet of 100 STAKEY or more', points: 250, completed: false },
                   { name: 'Lucky Streak', description: 'Win 3 games in a row', points: 500, completed: false },
                   { name: 'Early Adopter', description: 'Join during launch week', points: 1000, completed: false },
                 ].map((achievement, i) => (
@@ -180,11 +144,11 @@ export default function RewardsPage() {
               <div className="text-center space-y-8 p-8 rounded-lg bg-[#0d260d]/80 border border-[#63e211]/20 max-w-md w-full mx-4">
                 <h2 className="text-xl font-press-start-2p text-[#63e211]">Connect Wallet to View Rewards</h2>
                 <Button 
-                  onClick={() => connect()}
-                  className="bg-[#63e211] text-black hover:bg-[#7fff00] shadow-md shadow-[#63e211]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 font-press-start-2p flex items-center gap-2 mx-auto"
+                  onClick={connect}
+                  className="bg-[#63e211] text-black hover:bg-[#CB6CE6] hover:text-white shadow-md shadow-[#63e211]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 font-press-start-2p flex items-center gap-2 mx-auto"
                 >
                   <Wallet className="h-4 w-4" />
-                  CONNECT WALLET
+                  CONNECT PHANTOM
                 </Button>
               </div>
             </div>

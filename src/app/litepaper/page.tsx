@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { ArrowLeft, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { BalanceDropdown } from "@/components/balance-dropdown"
+import { SiteHeader } from "@/components/site-header"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,7 +22,7 @@ const pressStart2P = Press_Start_2P({
 
 export default function LitepaperPage() {
   const sections = [
-    { id: 'welcome', title: 'Welcome to 8BET' },
+    { id: 'welcome', title: 'Welcome to STAKEY' },
     { id: 'platform-overview', title: 'Platform Overview' },
     { id: 'game-mechanics', title: 'Game Mechanics' },
     { id: 'tokenomics', title: 'Tokenomics' },
@@ -44,49 +44,14 @@ export default function LitepaperPage() {
 
   return (
     <div className={`min-h-screen bg-black text-[#63e211] ${pressStart2P.variable} font-press-start-2p`}>
-      {/* Header */}
-      <header className="border-b border-green-900/50 bg-black/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="flex h-20 items-center justify-between w-full">
-          <div className="flex items-center gap-6 pl-6">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/8BETbanner.png"
-                alt="8BET Logo"
-                width={300}
-                height={100}
-                className="h-20 w-auto"
-                priority
-                quality={100}
-              />
-            </Link>
-          </div>
-          <div className="flex items-center gap-4 pr-6">
-            <BalanceDropdown />
-            <Link href="/account">
-              <Button 
-                variant="outline"
-                className="border-[#63e211]/20 bg-[#1a4d1a] text-[#63e211] hover:bg-[#63e211]/20 font-press-start-2p"
-              >
-                ACCOUNT
-              </Button>
-            </Link>
-            <Link href="/cashier">
-              <Button className="bg-[#63e211] text-black hover:bg-[#7fff00] shadow-md shadow-[#63e211]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 font-press-start-2p">
-                CASHIER
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Added mb-[30px] here */}
+      <SiteHeader />
       <div className="mb-[30px]" />
 
       {/* Main Content */}
       <div className="container py-8 relative">
         <div className="mb-8">
           <Link href="/">
-            <Button variant="ghost" className="gap-2 text-[#63e211] hover:bg-[#63e211]/20 font-press-start-2p">
+            <Button variant="ghost" className="gap-2 text-[#63e211] hover:bg-[#CB6CE6]/20 hover:text-[#CB6CE6] font-press-start-2p">
               <ArrowLeft className="h-4 w-4" />
               Back to Home
             </Button>
@@ -97,8 +62,8 @@ export default function LitepaperPage() {
           {/* Add large logo section */}
           <div className="flex flex-col items-center justify-center gap-8">
             <Image
-              src="/8BETbanner.png"
-              alt="8BET Logo"
+              src="/stakeyweblogo.png"
+              alt="STAKEY Logo"
               width={600}
               height={200}
               className="w-auto h-auto"
@@ -142,12 +107,12 @@ export default function LitepaperPage() {
           <Card id="welcome" className="bg-gradient-to-br from-[#1a4d1a] to-[#0d260d] border-[#63e211]/20">
             <CardHeader>
               <CardTitle className="text-[#63e211] font-press-start-2p text-lg">
-                Welcome to 8BET
+                Welcome to STAKEY
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6 text-[#63e211]/90">
               <p>
-                Welcome to 8BET & the $8BET token! An ETH based wagering platform. Our platform merges the thrill of classic 8-bit gaming with blockchain technology, creating a unique ecosystem where skill meets reward.
+                Welcome to STAKEY & the $STAKEY token! A Solana based wagering platform. Our platform merges the thrill of classic 8-bit gaming with blockchain technology, creating a unique ecosystem where skill meets reward.
               </p>
               <p>
                 Our mission is to revolutionize blockchain gaming by introducing genuine skill-based competition with real rewards. No random number generators, no luck-based mechanics - just pure skill and strategy.
@@ -165,7 +130,7 @@ export default function LitepaperPage() {
               <div className="space-y-4">
                 <h3 className="text-sm font-bold">Key Features:</h3>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>Skill-based gaming with ETH wagering</li>
+                  <li>Skill-based gaming with SOL wagering</li>
                   <li>Transparent and fair competition</li>
                   <li>No house edge in player-vs-player games</li>
                   <li>Community-driven development</li>
@@ -242,14 +207,14 @@ export default function LitepaperPage() {
               <div className="space-y-4">
                 <h3 className="text-sm font-bold">Token Distribution:</h3>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>90% - Uniswap Liquidity</li>
+                  <li>90% - Raydium Liquidity</li>
                   <li>4% - Marketing & Partnerships</li>
                   <li>2% - Team</li>
                   <li>4% - Treasury</li>
                 </ul>
               </div>
               <p>
-                Our tokenomics are designed for maximum decentralization, with 90% of tokens allocated to Uniswap liquidity. This ensures fair distribution and accessibility to all community members.
+                Our tokenomics are designed for maximum decentralization, with 90% of tokens allocated to Raydium liquidity. This ensures fair distribution and accessibility to all community members.
               </p>
               <div className="space-y-4">
                 <h3 className="text-sm font-bold">Token Utility:</h3>
@@ -298,10 +263,10 @@ export default function LitepaperPage() {
             </CardHeader>
             <CardContent className="space-y-6 text-[#63e211]/90">
               <p>
-                8BET is committed to a fair and transparent launch:
+                STAKEY is committed to a fair and transparent launch:
               </p>
               <ul className="list-disc pl-6 space-y-2">
-                <li>90% of total supply added to Uniswap liquidity</li>
+                <li>90% of total supply added to Raydium liquidity</li>
                 <li>No private sale or presale</li>
                 <li>Initial liquidity locked for 3 months</li>
                 <li>Lock extension based on platform performance</li>
@@ -309,14 +274,6 @@ export default function LitepaperPage() {
                 <li>Zero buy/sell tax</li>
                 <li>Minimal team allocation (2%)</li>
               </ul>
-              <div className="bg-black/20 p-4 rounded-lg mt-4">
-                <div className="text-xs text-[#63e211]/80 font-press-start-2p">
-                  Contract Address:
-                  <code className="ml-2 bg-black/20 px-2 py-1 rounded break-all">
-                    0x9fC6Dc9Aba221e2260527CFA9e2564525D451093
-                  </code>
-                </div>
-              </div>
             </CardContent>
           </Card>
 

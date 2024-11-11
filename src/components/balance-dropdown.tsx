@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronDown } from "lucide-react"
 import { CustomImage } from "@/components/ui/custom-image"
 import Image from 'next/image'
-import eth32 from 'cryptocurrency-icons/32/color/eth.png'
+import sol32 from 'cryptocurrency-icons/32/color/sol.png'
 import usdc32 from 'cryptocurrency-icons/32/color/usdc.png'
 import { usePriceStore } from '@/lib/price-service'
 
@@ -25,17 +25,17 @@ type CoinType = {
 
 export function BalanceDropdown() {
   const [selectedCoin, setSelectedCoin] = React.useState<CoinType>({
-    name: '8BET',
+    name: 'STAKEY',
     balance: '0.00',
-    icon: '/8betdark.png',
+    icon: '/stakeymainimage1.png',
     price: 1.00
   })
 
   const { prices } = usePriceStore()
 
   const coins: CoinType[] = [
-    { name: '8BET', balance: '0.00', icon: '/8betdark.png', price: prices['8BET'] },
-    { name: 'ETH', balance: '0.00', icon: eth32, price: prices.ethereum },
+    { name: 'STAKEY', balance: '0.00', icon: '/stakeymainimage1.png', price: prices['STAKEY'] },
+    { name: 'SOLANA', balance: '0.00', icon: sol32, price: prices.solana },
     { name: 'USDC', balance: '0.00', icon: usdc32, price: 1.00 }
   ]
 
@@ -70,11 +70,11 @@ export function BalanceDropdown() {
           <ChevronDown className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-[#0d260d] border-[#63e211]/20">
+      <DropdownMenuContent className="bg-gradient-to-br from-[#0d260d] via-[#CB6CE6]/5 to-[#0d260d] border-[#63e211]/20">
         {coins.map((coin) => (
           <DropdownMenuItem 
             key={coin.name}
-            className="flex items-center justify-between gap-4 hover:bg-[#63e211]/20 cursor-pointer"
+            className="flex items-center justify-between gap-4 hover:bg-gradient-to-r hover:from-[#63e211]/20 hover:to-[#CB6CE6]/20 cursor-pointer"
             onClick={() => handleCoinSelect(coin)}
           >
             <div className="flex items-center gap-2">
