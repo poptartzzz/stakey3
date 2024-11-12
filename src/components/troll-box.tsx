@@ -26,13 +26,47 @@ const addresses = [
 // Dedicated spammer address
 const SPAMMER_ADDRESS = 'EWmQeCKE6MsByDGdL8yWHxhqwFEJ1kYzXnwFrPoZUvQm'
 
-// Map spammer address to their spam messages
+// Regular chat messages - reduced BETZ mentions and added typos/spam
+const messages = [
+  // Price/Trading Discussion
+  "wen moon", "accumlating", "good entrry price", "chart lookn good", 
+  "floor iz set", "volum picking up", "helthy price action", "bullish af",
+  
+  // Community/Project Comments - occasional BETZ mentions
+  "dev iz based", "gr8 community", "BETZ looking solid", "wen utility",
+  "tem delivering", "markting soon", "wen listings", "staking rewads insane",
+  
+  // General Sentiment & Spam
+  "WAGMI", "early af", "LFG 🚀", "HODL", "gm", "gn", "test", "testing",
+  "gggggggg", "a", "t", "paper handz out", "k", "wen", "ser pls",
+  
+  // Platform Specific
+  "gamez r addictive", "skill-based ftw", "no rng = fair", "gg",
+  "rewads system fire", "feez are fair", "instant payoutz",
+  "UI clean af", "ez to use", "wen update",
+  
+  // Hype/Momentum
+  "PUMP IT", "LETS MOON", "wen ath", "CEX wen",
+  "trending rn", "volum crazy", "liq good",
+  "ecosystem growing", "community stronk", "marketing wen",
+  
+  // Questions/Discussion
+  "wen marketing?", "wen cex?", "floor?", "mcap?",
+  "how 2 stake?", "where buy?", "which game best?",
+  "any1 tried games?", "wuts apy?", "how join?",
+  
+  // Pure Spam/Test Messages
+  "asdfasdf", "test123", "hello", "hi", "gm frens",
+  "tttttttttt", "....", "????", "!!!", "f",
+  "kekw", "ngmi", "rekt", "ded", "pamp"
+]
+
+// Dedicated spammer addresses with their unique messages
 const spammerMessages = [
-  "@https://pump.fun/coin/CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump",
-  "@https://pump.fun/coin/CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump",
-  "check this @https://pump.fun/coin/CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump",
-  "interesting project @https://pump.fun/coin/CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump",
-  "anyone seen this? @https://pump.fun/coin/CVrL6nvTt3KS8KSQo1SrXtqdjDdDW23XDz6bEXkxpump"
+  "🚀 BETZ LAUNCHING ON PUMP.FUN - GET IN EARLY @https://pump.fun/coin/...",
+  "NEXT 1000X GEM: BETZ TOKEN 🔥 @https://pump.fun/coin/...",
+  "SKILL-BASED GAMING ON SOLANA: BETZ ✅ @https://pump.fun/coin/...",
+  "BETZ: THE FUTURE OF BLOCKCHAIN GAMING 🎮 @https://pump.fun/coin/..."
 ]
 
 // Random colors for usernames
@@ -49,30 +83,55 @@ const nameColors = [
   '#00ff7f'  // Spring Green
 ]
 
-// Regular chat messages
-const messages = [
-  "wen moon?", "gm", "gay boys", "bullish af", "shitballs", "to the moon 🚀",
-  "nice project", "wtf is this shit", "homo", "lol", "wtf is this", "ser...",
-  "wen listing", "based", "anon?", "gm fam", "wen pump", "nice",
-  "lets go!", "first time?", "paper hands ngmi", "diamond hands only 💎",
-  "hodl", "dyor", "nfa", "fud", "ayhyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy", "staking rewards wen",
-  "early", "comfy", "pump it", "buy ASS", "floor price?",
-  "stop spamming ffs", "another jeet coin smh", "mods pls ban spammer",
-  "jeets btfo", "gtfo with that spam", "nigger", "fag", "yall gay af", "ser stop the spam",
-  "not another jeet raid", "bonding curve looks good", "healthy price action",
-  "accumulation phase", "liquidity looks thin", "whales are accumulating",
-  "paper hands getting shaken out", "jeets getting rekt", "smart money buying",
-  "dumb money selling", "stop dumping ser", "who dumped?", "weak hands out",
-  "holding strong", "diamond hands only 💎", "💎","jeets getting cleared",
-  "wen marketing?", "team based fr", "devs are chads", "community strong",
-  "jeets stay away", "organic growth only", "niggerniggerniggerniggerniggerniggerniggerniggernigger", "niggerniggerniggernigger", "TRUMP WON KAMAL LOST", "FAT DICKS AND BALLS"
-]
-
 interface SavedMessage {
   address: string
   content: string
   timestamp: string
 }
+
+// Add conversation pairs
+const conversationPairs = [
+  {
+    question: "wen marketing?",
+    responses: [
+      "soon ser, team is working on it",
+      "next week according to TG",
+      "check the roadmap anon"
+    ]
+  },
+  {
+    question: "what's the mcap?",
+    responses: [
+      "around 500k rn",
+      "still early anon",
+      "tiny mcap, huge potential"
+    ]
+  },
+  {
+    question: "floor price?",
+    responses: [
+      "holding strong at 0.1",
+      "paper hands out, only up from here",
+      "check dexscreener ser"
+    ]
+  },
+  {
+    question: "how to stake?",
+    responses: [
+      "connect wallet and go to staking page",
+      "need minimum 1000 BETZ to stake",
+      "apr is insane rn, get in quick"
+    ]
+  },
+  {
+    question: "is team doxxed?",
+    responses: [
+      "fully doxxed in TG",
+      "team is based af",
+      "check pinned messages in TG"
+    ]
+  }
+]
 
 export function TrollBox() {
   const [mounted, setMounted] = useState(false)
@@ -81,33 +140,10 @@ export function TrollBox() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const { isConnected, connect } = useWallet()
 
-  // Add regular message
-  const addRegularMessage = () => {
-    const newMessage = {
-      address: addresses[Math.floor(Math.random() * addresses.length)],
-      content: messages[Math.floor(Math.random() * messages.length)],
-      timestamp: new Date()
-    }
-    setChatMessages(prev => {
-      const updated = [...prev.slice(-49), newMessage]
-      localStorage.setItem('trollbox_messages', JSON.stringify(updated))
-      return updated
-    })
-  }
-
-  // Remove addSpamBurst function and replace with single spam message
-  const addSpamMessage = () => {
-    setChatMessages(prev => {
-      const newMessage = {
-        address: SPAMMER_ADDRESS,
-        content: spammerMessages[Math.floor(Math.random() * spammerMessages.length)],
-        timestamp: new Date()
-      }
-      const updated = [...prev.slice(-49), newMessage]
-      localStorage.setItem('trollbox_messages', JSON.stringify(updated))
-      return updated
-    })
-  }
+  // Add message tracking with message history
+  const [usedMessages, setUsedMessages] = useState<Set<number>>(new Set())
+  const [usedSpamMessages, setUsedSpamMessages] = useState<Set<number>>(new Set())
+  const [recentMessages, setRecentMessages] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     setMounted(true)
@@ -131,21 +167,118 @@ export function TrollBox() {
     }
   }, [])
 
-  // Update message generation intervals
   useEffect(() => {
     if (!mounted) return
 
-    // Regular messages - every 8-20 seconds
+    // Move both functions inside useEffect
+    const getRandomMessage = () => {
+      let availableIndices = Array.from(Array(messages.length).keys())
+        .filter(i => !usedMessages.has(i))
+      
+      if (availableIndices.length === 0) {
+        setUsedMessages(new Set()) // Reset if all messages used
+        availableIndices = Array.from(Array(messages.length).keys())
+      }
+      
+      const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)]
+      const message = messages[randomIndex]
+      
+      // Check if message was recently used
+      if (recentMessages.has(message)) {
+        return getRandomMessage() // Try again if message was recent
+      }
+      
+      // Update tracking
+      setUsedMessages(prev => new Set([...prev, randomIndex]))
+      setRecentMessages(prev => {
+        const updated = new Set(prev)
+        updated.add(message)
+        if (updated.size > 10) { // Keep track of last 10 messages
+          const oldest = Array.from(updated)[0]
+          updated.delete(oldest)
+        }
+        return updated
+      })
+      
+      return message
+    }
+
+    const getRandomSpamMessage = () => {
+      let availableIndices = Array.from(Array(spammerMessages.length).keys())
+        .filter(i => !usedSpamMessages.has(i))
+      
+      if (availableIndices.length === 0) {
+        setUsedSpamMessages(new Set()) // Reset if all spam messages used
+        availableIndices = Array.from(Array(spammerMessages.length).keys())
+      }
+      
+      const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)]
+      setUsedSpamMessages(prev => new Set([...prev, randomIndex]))
+      return spammerMessages[randomIndex]
+    }
+
+    // Move addRegularMessage inside useEffect
+    const addRegularMessage = () => {
+      const newMessage = {
+        address: addresses[Math.floor(Math.random() * addresses.length)],
+        content: getRandomMessage(),
+        timestamp: new Date()
+      }
+
+      setChatMessages(prev => {
+        const updated = [...prev.slice(-49), newMessage]
+
+        // Check if the message matches any conversation starters
+        const matchingPair = conversationPairs.find(pair => 
+          pair.question.toLowerCase() === newMessage.content.toLowerCase()
+        )
+
+        // If it's a conversation starter, add a response after a delay
+        if (matchingPair) {
+          setTimeout(() => {
+            const response = {
+              address: addresses[Math.floor(Math.random() * addresses.length)],
+              content: matchingPair.responses[Math.floor(Math.random() * matchingPair.responses.length)],
+              timestamp: new Date()
+            }
+            setChatMessages(current => {
+              const withResponse = [...current.slice(-49), response]
+              localStorage.setItem('trollbox_messages', JSON.stringify(withResponse))
+              return withResponse
+            })
+          }, Math.random() * 2000 + 1000) // Random delay between 1-3 seconds
+        }
+
+        localStorage.setItem('trollbox_messages', JSON.stringify(updated))
+        return updated
+      })
+    }
+
+    // Move addSpamMessage inside useEffect
+    const addSpamMessage = () => {
+      setChatMessages(prev => {
+        const newMessage = {
+          address: SPAMMER_ADDRESS,
+          content: getRandomSpamMessage(),
+          timestamp: new Date()
+        }
+        const updated = [...prev.slice(-49), newMessage]
+        localStorage.setItem('trollbox_messages', JSON.stringify(updated))
+        return updated
+      })
+    }
+
+    // Regular messages interval
     const regularInterval = setInterval(() => {
       const delay = Math.floor(Math.random() * 12000) + 8000
       setTimeout(addRegularMessage, delay)
     }, 20000)
 
-    // Single spam messages - every 45-90 seconds
+    // Spam messages interval
     const spamInterval = setInterval(() => {
       const delay = Math.floor(Math.random() * 45000) + 45000
       setTimeout(() => {
-        if (Math.random() > 0.3) { // 70% chance to send spam
+        if (Math.random() > 0.5) {
           addSpamMessage()
         }
       }, delay)
@@ -155,7 +288,7 @@ export function TrollBox() {
       clearInterval(regularInterval)
       clearInterval(spamInterval)
     }
-  }, [mounted])
+  }, [mounted, usedMessages, usedSpamMessages, recentMessages])
 
   // Auto scroll to bottom whenever messages change
   useEffect(() => {

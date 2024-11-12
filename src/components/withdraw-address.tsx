@@ -9,13 +9,12 @@ import { AlertCircle } from 'lucide-react'
 
 interface WithdrawAddressProps {
   tokenName: string
-  tokenAddress: string
   network: string
   icon: string
   balance: string
 }
 
-export default function WithdrawAddress({ tokenName, tokenAddress, network, icon, balance }: WithdrawAddressProps) {
+export default function WithdrawAddress({ tokenName, network, icon, balance }: WithdrawAddressProps) {
   const [amount, setAmount] = useState('')
   const [address, setAddress] = useState('')
 
@@ -93,12 +92,6 @@ export default function WithdrawAddress({ tokenName, tokenAddress, network, icon
           </Button>
         </div>
       </CardContent>
-      <div className="text-xs text-[#63e211]/80 font-press-start-2p mt-4">
-        <div>Contract Address:</div>
-        <code className="bg-black/20 px-2 py-1 rounded break-all">
-          {tokenAddress}
-        </code>
-      </div>
     </Card>
   )
 } 

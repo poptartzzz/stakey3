@@ -102,7 +102,7 @@ export default function DepositAddress({ tokenName, tokenAddress, network, icon 
             Send only {tokenName} to this address. Other tokens may be lost permanently.
           </div>
           <div className="mt-4 text-xs text-[#63e211]/60 font-press-start-2p italic">
-            Note: Deposits are processed through our secure STAKEY Hot Wallet system and credited to your web wallet balance upon confirmation.
+            Note: Deposits are processed through our secure BETZ Hot Wallet system and credited to your web wallet balance upon confirmation.
           </div>
         </div>
       </CardContent>

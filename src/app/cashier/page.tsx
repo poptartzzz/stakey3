@@ -11,6 +11,7 @@ import sol32 from 'cryptocurrency-icons/32/color/sol.png'
 import usdc32 from 'cryptocurrency-icons/32/color/usdc.png'
 import { SiteHeader } from "@/components/site-header"
 import { CustomImage } from "@/components/ui/custom-image"
+import { HelpDesk } from "@/components/help-desk"
 
 // Dynamically import components that use window
 const DepositAddress = dynamic(
@@ -71,20 +72,20 @@ export default function CashierPage() {
 
               <TabsContent value="deposit">
                 <div className="mt-6">
-                  <Tabs defaultValue="stakey" className="w-full">
+                  <Tabs defaultValue="betz" className="w-full">
                     <TabsList className="grid w-full grid-cols-3 bg-[#1a4d1a] font-press-start-2p">
                       <TabsTrigger 
-                        value="stakey"
+                        value="betz"
                         className="data-[state=active]:bg-[#63e211] data-[state=active]:text-black flex items-center gap-2 font-press-start-2p"
                       >
                         <CustomImage
-                          src="/stakeymainimage1.png"
-                          alt="STAKEY"
+                          src="/coinimagegif.gif"
+                          alt="BETZ"
                           width={24}
                           height={24}
                           className="rounded-full"
                         />
-                        STAKEY
+                        BETZ
                       </TabsTrigger>
                       <TabsTrigger 
                         value="solana"
@@ -114,13 +115,13 @@ export default function CashierPage() {
                       </TabsTrigger>
                     </TabsList>
                     
-                    <TabsContent value="stakey">
+                    <TabsContent value="betz">
                       <div className="mt-6">
                         <DepositAddress 
-                          tokenName="STAKEY"
+                          tokenName="BETZ"
                           tokenAddress="5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1"
                           network="Solana"
-                          icon="/stakeymainimage1.png"
+                          icon="/coinimagegif.gif"
                         />
                       </div>
                     </TabsContent>
@@ -152,20 +153,20 @@ export default function CashierPage() {
 
               <TabsContent value="withdraw">
                 <div className="mt-6">
-                  <Tabs defaultValue="stakey" className="w-full">
+                  <Tabs defaultValue="betz" className="w-full">
                     <TabsList className="grid w-full grid-cols-3 bg-[#1a4d1a] font-press-start-2p">
                       <TabsTrigger 
-                        value="stakey"
+                        value="betz"
                         className="data-[state=active]:bg-[#63e211] data-[state=active]:text-black flex items-center gap-2 font-press-start-2p"
                       >
                         <CustomImage
-                          src="/stakeymainimage1.png"
-                          alt="STAKEY"
+                          src="/coinimagegif.gif"
+                          alt="BETZ"
                           width={24}
                           height={24}
                           className="rounded-full"
                         />
-                        STAKEY
+                        BETZ
                       </TabsTrigger>
                       <TabsTrigger 
                         value="solana"
@@ -195,13 +196,12 @@ export default function CashierPage() {
                       </TabsTrigger>
                     </TabsList>
                     
-                    <TabsContent value="stakey">
+                    <TabsContent value="betz">
                       <div className="mt-6">
                         <WithdrawAddress 
-                          tokenName="STAKEY"
-                          tokenAddress="5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1"
+                          tokenName="BETZ"
                           network="Solana"
-                          icon="/stakeymainimage1.png"
+                          icon="/coinimagegif.gif"
                           balance="0.00"
                         />
                       </div>
@@ -211,7 +211,6 @@ export default function CashierPage() {
                       <div className="mt-6">
                         <WithdrawAddress 
                           tokenName="SOLANA"
-                          tokenAddress="4P33jpAq7r4p7JxYnjJGb8tpoGJV7AZEJUJAm8G1FU9X"
                           network="Solana"
                           icon={sol32.src}
                           balance="0.00"
@@ -223,7 +222,6 @@ export default function CashierPage() {
                       <div className="mt-6">
                         <WithdrawAddress 
                           tokenName="USDC"
-                          tokenAddress="4P33jpAq7r4p7JxYnjJGb8tpoGJV7AZEJUJAm8G1FU9X"
                           network="Solana"
                           icon={usdc32.src}
                           balance="0.00"
@@ -253,6 +251,8 @@ export default function CashierPage() {
           )}
         </div>
       </div>
+
+      <HelpDesk />
     </div>
   )
 } 

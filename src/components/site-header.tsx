@@ -12,8 +12,8 @@ export function SiteHeader() {
         <div className="flex items-center gap-6 pl-6">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/stakeyweblogo.png"
-              alt="STAKEY Logo"
+              src="/gidlogomain.gif"
+              alt="SOLBETZ Logo"
               width={300}
               height={100}
               className="h-20 w-auto"

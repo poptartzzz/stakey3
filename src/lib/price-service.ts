@@ -11,12 +11,12 @@ interface PriceState {
   prices: {
     solana: number
     bitcoin: number
-    STAKEY: number
+    BETZ: number
   }
   previousPrices: {
     solana: number
     bitcoin: number
-    STAKEY: number
+    BETZ: number
   }
   volume24h: number
   chartData: {
@@ -30,12 +30,12 @@ const initialState: PriceState = {
   prices: {
     solana: 0,
     bitcoin: 0,
-    STAKEY: 0
+    BETZ: 0
   },
   previousPrices: {
     solana: 0,
     bitcoin: 0,
-    STAKEY: 0
+    BETZ: 0
   },
   volume24h: 0,
   chartData: {
@@ -73,8 +73,8 @@ export const usePriceStore = create<PriceState>()(
 
           const data = await response.json()
 
-          // Placeholder STAKEY price - implement actual DEX price fetching later
-          const stakeyPrice = 0.01
+          // Placeholder BETZ price - implement actual DEX price fetching later
+          const betzPrice = 0.01
 
           // Update prices only if we got valid data
           if (data?.solana?.usd && data?.bitcoin?.usd) {
@@ -82,7 +82,7 @@ export const usePriceStore = create<PriceState>()(
               prices: {
                 solana: data.solana.usd,
                 bitcoin: data.bitcoin.usd,
-                STAKEY: stakeyPrice
+                BETZ: betzPrice
               }
             })
           }

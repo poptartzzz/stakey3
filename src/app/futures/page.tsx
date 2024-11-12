@@ -66,7 +66,7 @@ export default function FuturesPage() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <LineChart className="h-4 w-4 text-[#63e211]" />
-                    <span className="text-[#63e211]">STAKEY-USD</span>
+                    <span className="text-[#63e211]">BETZ-USD</span>
                   </div>
                   <div className="text-[#63e211]">$0.00</div>
                 </div>

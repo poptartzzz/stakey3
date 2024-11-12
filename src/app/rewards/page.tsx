@@ -79,15 +79,15 @@ export default function RewardsPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 {[
-                  { name: 'Play 3 Games', points: 50, progress: 0, max: 3 },
-                  { name: 'Win 1 Game', points: 100, progress: 0, max: 1 },
-                  { name: 'Place 5 Bets', points: 75, progress: 0, max: 5 },
+                  { name: 'Play 3 Games', points: 0.5, progress: 0, max: 3 },
+                  { name: 'Win 1 Game', points: 1.0, progress: 0, max: 1 },
+                  { name: 'Place 5 Bets', points: 0.75, progress: 0, max: 5 },
                 ].map((task, i) => (
                   <div key={i} className="bg-black/30 p-4 rounded-lg">
                     <div className="flex justify-between items-center mb-2">
                       <div className="flex items-center gap-2">
                         <span className="text-sm text-[#63e211]">{task.name}</span>
-                        <span className="text-xs text-[#63e211]/80">+{task.points} pts</span>
+                        <span className="text-xs text-[#63e211]/80">+{task.points} BETZ</span>
                       </div>
                       <span className="text-xs text-[#63e211]/80">
                         {task.progress}/{task.max}
@@ -114,10 +114,10 @@ export default function RewardsPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 {[
-                  { name: 'First Win', description: 'Win your first game', points: 100, completed: false },
-                  { name: 'High Roller', description: 'Place a bet of 100 STAKEY or more', points: 250, completed: false },
-                  { name: 'Lucky Streak', description: 'Win 3 games in a row', points: 500, completed: false },
-                  { name: 'Early Adopter', description: 'Join during launch week', points: 1000, completed: false },
+                  { name: 'First Win', description: 'Win your first game', points: 1.0, completed: false },
+                  { name: 'High Roller', description: 'Place a bet of 100 BETZ or more', points: 2.5, completed: false },
+                  { name: 'Lucky Streak', description: 'Win 3 games in a row', points: 5.0, completed: false },
+                  { name: 'Early Adopter', description: 'Join during launch week', points: 10.0, completed: false },
                 ].map((achievement, i) => (
                   <div key={i} className="bg-black/30 p-4 rounded-lg">
                     <div className="flex justify-between items-center">
@@ -126,7 +126,7 @@ export default function RewardsPage() {
                         <div className="text-xs text-[#63e211]/80">{achievement.description}</div>
                       </div>
                       <div className="text-right">
-                        <div className="text-xs text-[#63e211]/80">+{achievement.points} pts</div>
+                        <div className="text-xs text-[#63e211]/80">+{achievement.points} BETZ</div>
                         <div className={`text-xs ${achievement.completed ? 'text-[#63e211]' : 'text-[#63e211]/50'}`}>
                           {achievement.completed ? 'Completed' : 'Locked'}
                         </div>

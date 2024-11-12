@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useWallet } from '@/app/providers'
 import { SiteHeader } from "@/components/site-header"
+import { HelpDesk } from "@/components/help-desk"
 
 const pressStart2P = Press_Start_2P({ 
   weight: '400',
@@ -146,6 +147,8 @@ export default function AccountPage() {
           )}
         </div>
       </div>
+
+      <HelpDesk />
     </div>
   )
 } 

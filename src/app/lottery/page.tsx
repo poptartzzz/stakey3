@@ -87,7 +87,7 @@ export default function LotteryPage() {
                   Daily Draw at 02:00 UTC
                 </div>
                 <div className="text-lg text-[#ff6666] font-press-start-2p">
-                  10 SOL + 0 STAKEY
+                  10 SOL + 0 BETZ
                 </div>
               </CardContent>
             </Card>
@@ -104,7 +104,7 @@ export default function LotteryPage() {
                 <div className="space-y-4">
                   <h3 className="text-sm font-bold text-[#63e211]">Entry Requirements:</h3>
                   <ul className="list-disc pl-6 space-y-2 text-sm text-[#63e211]/80">
-                    <li>Must hold minimum 1,000 STAKEY tokens</li>
+                    <li>Must hold minimum 1,000 BETZ tokens</li>
                     <li>Tokens must be held for at least 24 hours</li>
                     <li>One entry per wallet address</li>
                     <li>Must be connected to participate</li>

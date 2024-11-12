@@ -36,11 +36,18 @@ export default function StakingPage() {
         </div>
 
         <div className="max-w-4xl mx-auto space-y-8">
-          <h1 className="text-2xl font-press-start-2p text-[#63e211] text-center">STAKEY STAKING</h1>
+          <h1 className="text-2xl font-press-start-2p text-[#63e211] text-center">BETZ STAKING</h1>
+
+          {/* Add disclaimer */}
+          <div className="text-center">
+            <p className="text-[#CB6CE6] font-press-start-2p text-sm animate-pulse">
+              Staking Coming After Launch
+            </p>
+          </div>
 
           {/* Staking Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card className="bg-gradient-to-br from-[#1a4d1a] to-[#0d260d] border-[#63e211]/20">
+            <Card className="bg-gradient-to-br from-[#4b1d4b] to-[#2d112d] border-[#63e211]/20">
               <CardContent className="p-6">
                 <div className="text-sm text-[#63e211]/80">TVL</div>
                 <div className="text-xl font-bold text-[#63e211]">$0.00</div>
@@ -52,26 +59,26 @@ export default function StakingPage() {
                 <div className="text-xl font-bold text-[#63e211]">0.00%</div>
               </CardContent>
             </Card>
-            <Card className="bg-gradient-to-br from-[#1a4d1a] to-[#0d260d] border-[#63e211]/20">
+            <Card className="bg-gradient-to-br from-[#4b1d4b] to-[#2d112d] border-[#63e211]/20">
               <CardContent className="p-6">
                 <div className="text-sm text-[#63e211]/80">Total Staked</div>
-                <div className="text-xl font-bold text-[#63e211]">0 STAKEY</div>
+                <div className="text-xl font-bold text-[#63e211]">0 BETZ</div>
               </CardContent>
             </Card>
           </div>
 
           {/* Staking Card */}
-          <Card className="bg-gradient-to-br from-[#1a4d1a] to-[#0d260d] border-[#63e211]/20">
+          <Card className="bg-gradient-to-br from-[#4b1d4b] to-[#2d112d] border-[#63e211]/20">
             <CardHeader>
               <CardTitle className="text-[#63e211] font-press-start-2p text-lg flex items-center gap-3">
                 <CustomImage
-                  src="/stakeymainimage1.png"
-                  alt="STAKEY"
+                  src="/stakeytokenmain.png"
+                  alt="BETZ"
                   width={32}
                   height={32}
                   className="rounded-full"
                 />
-                STAKEY Staking Pool
+                BETZ Staking Pool
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -79,11 +86,11 @@ export default function StakingPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-black/30 p-4 rounded-lg">
                 <div>
                   <div className="text-sm text-[#63e211]/80">Your Staked Balance</div>
-                  <div className="text-lg font-bold text-[#63e211]">0.00 STAKEY</div>
+                  <div className="text-lg font-bold text-[#63e211]">0.00 BETZ</div>
                 </div>
                 <div>
                   <div className="text-sm text-[#63e211]/80">Claimable Rewards</div>
-                  <div className="text-lg font-bold text-[#63e211]">0.00 STAKEY</div>
+                  <div className="text-lg font-bold text-[#63e211]">0.00 BETZ</div>
                 </div>
               </div>
 
@@ -93,7 +100,7 @@ export default function StakingPage() {
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm text-[#63e211]">
                       <span>Amount to Stake</span>
-                      <span>Balance: 0.00 STAKEY</span>
+                      <span>Balance: 0.00 BETZ</span>
                     </div>
                     <div className="flex gap-2">
                       <Input

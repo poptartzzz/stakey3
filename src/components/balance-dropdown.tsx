@@ -25,16 +25,16 @@ type CoinType = {
 
 export function BalanceDropdown() {
   const [selectedCoin, setSelectedCoin] = React.useState<CoinType>({
-    name: 'STAKEY',
+    name: 'BETZ',
     balance: '0.00',
-    icon: '/stakeymainimage1.png',
+    icon: '/coinimagegif.gif',
     price: 1.00
   })
 
   const { prices } = usePriceStore()
 
   const coins: CoinType[] = [
-    { name: 'STAKEY', balance: '0.00', icon: '/stakeymainimage1.png', price: prices['STAKEY'] },
+    { name: 'BETZ', balance: '0.00', icon: '/coinimagegif.gif', price: prices['BETZ'] },
     { name: 'SOLANA', balance: '0.00', icon: sol32, price: prices.solana },
     { name: 'USDC', balance: '0.00', icon: usdc32, price: 1.00 }
   ]

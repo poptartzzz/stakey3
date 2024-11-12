@@ -38,3 +38,93 @@
 .glow-text {
   text-shadow: 0 0 10px rgba(99, 226, 17, 0.5);
 }
+
+@keyframes banner-flash {
+  0% { background: linear-gradient(to right, #1a4d1a, rgba(203, 108, 230, 0.2), #1a4d1a); }
+  25% { background: linear-gradient(to right, #CB6CE6, rgba(99, 226, 17, 0.2), #CB6CE6); }
+  50% { background: linear-gradient(to right, #63e211, rgba(203, 108, 230, 0.2), #63e211); }
+  75% { background: linear-gradient(to right, #CB6CE6, rgba(99, 226, 17, 0.2), #CB6CE6); }
+  100% { background: linear-gradient(to right, #1a4d1a, rgba(203, 108, 230, 0.2), #1a4d1a); }
+}
+
+@keyframes text-flash {
+  0% { color: #CB6CE6; }
+  25% { color: #63e211; }
+  50% { color: #ff6666; }
+  75% { color: #63e211; }
+  100% { color: #CB6CE6; }
+}
+
+.animate-banner-flash {
+  animation: banner-flash 0.5s linear infinite;
+}
+
+.animate-text-flash {
+  animation: text-flash 0.5s linear infinite;
+}
+
+@keyframes neon-purple {
+  0%, 100% {
+    text-shadow: 0 0 2px #e9b8f6,
+                0 0 4px #e9b8f6;
+  }
+  50% {
+    text-shadow: 0 0 1px #e9b8f6,
+                0 0 3px #e9b8f6;
+  }
+}
+
+@keyframes neon-flicker {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: none;
+  }
+  41% {
+    opacity: 1;
+    text-shadow: none;
+  }
+  42% {
+    opacity: 0.4;
+    text-shadow: 0 0 5px #e9b8f6,
+                0 0 10px #e9b8f6,
+                0 0 20px #e9b8f6;
+  }
+  43% {
+    opacity: 1;
+    text-shadow: none;
+  }
+  45% {
+    opacity: 0.4;
+    text-shadow: 0 0 5px #e9b8f6,
+                0 0 10px #e9b8f6,
+                0 0 20px #e9b8f6;
+  }
+  46% {
+    opacity: 1;
+    text-shadow: none;
+  }
+}
+
+.neon-text {
+  animation: neon-purple 1.5s ease-in-out infinite;
+}
+
+.neon-flicker {
+  display: inline-block;
+  animation: neon-flicker 5s infinite;
+  animation-delay: calc(var(--flicker-delay) * 1s);
+  color: #e9b8f6;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 4s linear infinite;
+}

@@ -6,6 +6,7 @@ import { ArrowLeft, Gamepad2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { SiteHeader } from "@/components/site-header"
+import { useState, useEffect } from 'react'
 
 const pressStart2P = Press_Start_2P({ 
   weight: '400',
@@ -14,6 +15,30 @@ const pressStart2P = Press_Start_2P({
 })
 
 export default function FLEPEDemoPage() {
+  const [showLoading, setShowLoading] = useState(true)
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoading(false)
+    }, 20000)
+
+    const progressInterval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(progressInterval)
+          return 100
+        }
+        return prev + 1
+      })
+    }, 200)
+
+    return () => {
+      clearTimeout(timer)
+      clearInterval(progressInterval)
+    }
+  }, [])
+
   return (
     <div className={`min-h-screen bg-black text-[#63e211] ${pressStart2P.variable} font-press-start-2p`}>
       <SiteHeader />
@@ -48,11 +73,46 @@ export default function FLEPEDemoPage() {
               
               {/* Game Container */}
               <div className="relative w-full aspect-[4/3] bg-black/30 rounded-lg overflow-hidden">
-                <iframe 
-                  src="https://i.simmer.io/@gameboy11/~09dbf1cc-74c0-7090-3497-0f382128d7e9" 
-                  className="absolute inset-0 w-full h-full"
-                  style={{ border: '0' }}
-                />
+                {/* Add blur to iframe */}
+                <div className={`absolute inset-0 filter ${showLoading ? 'blur-[2px]' : ''} transition-all duration-300`}>
+                  <iframe 
+                    src="https://i.simmer.io/@gameboy11/~09dbf1cc-74c0-7090-3497-0f382128d7e9" 
+                    className="absolute inset-0 w-full h-full"
+                    style={{ border: '0' }}
+                  />
+                </div>
+
+                {/* Add semi-transparent overlay */}
+                {showLoading && (
+                  <div className="absolute inset-0 bg-black/20 z-10" />
+                )}
+
+                {/* Stats Overlay - Made solid with 3D effect */}
+                {showLoading && (
+                  <div className="absolute bottom-10 left-10 right-10 h-[37.5%] bg-[#1a4d1a] flex items-center justify-center rounded-lg border border-[#63e211]/50 shadow-[inset_0_1px_0_0_rgba(99,226,17,0.1)] overflow-hidden z-20">
+                    {/* Background glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#63e211]/5 to-transparent" />
+                    
+                    {/* 3D border effect */}
+                    <div className="absolute inset-0 border-t border-[#63e211]/10" />
+                    <div className="absolute inset-0 border-b-2 border-black/20" />
+                    
+                    {/* Content */}
+                    <div className="flex flex-col items-center justify-center gap-4 relative z-10 w-full px-8">
+                      <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#63e211] border-t-transparent" />
+                      <span className="text-[#63e211] font-press-start-2p text-lg">
+                        Loading DEMO Mode
+                      </span>
+                      {/* Progress Bar */}
+                      <div className="w-full h-2 bg-black/30 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-[#63e211] transition-all duration-150 ease-linear rounded-full"
+                          style={{ width: `${progress}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Instructions */}
