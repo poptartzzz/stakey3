@@ -167,33 +167,32 @@ export function TrollBox() {
     }
   }, [])
 
+  // Update message generation intervals
   useEffect(() => {
     if (!mounted) return
 
-    // Move both functions inside useEffect
+    // Move these functions inside useEffect
     const getRandomMessage = () => {
       let availableIndices = Array.from(Array(messages.length).keys())
         .filter(i => !usedMessages.has(i))
       
       if (availableIndices.length === 0) {
-        setUsedMessages(new Set()) // Reset if all messages used
+        setUsedMessages(new Set())
         availableIndices = Array.from(Array(messages.length).keys())
       }
       
       const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)]
       const message = messages[randomIndex]
       
-      // Check if message was recently used
       if (recentMessages.has(message)) {
-        return getRandomMessage() // Try again if message was recent
+        return getRandomMessage()
       }
       
-      // Update tracking
       setUsedMessages(prev => new Set([...prev, randomIndex]))
       setRecentMessages(prev => {
         const updated = new Set(prev)
         updated.add(message)
-        if (updated.size > 10) { // Keep track of last 10 messages
+        if (updated.size > 10) {
           const oldest = Array.from(updated)[0]
           updated.delete(oldest)
         }
@@ -208,7 +207,7 @@ export function TrollBox() {
         .filter(i => !usedSpamMessages.has(i))
       
       if (availableIndices.length === 0) {
-        setUsedSpamMessages(new Set()) // Reset if all spam messages used
+        setUsedSpamMessages(new Set())
         availableIndices = Array.from(Array(spammerMessages.length).keys())
       }
       
@@ -217,7 +216,6 @@ export function TrollBox() {
       return spammerMessages[randomIndex]
     }
 
-    // Move addRegularMessage inside useEffect
     const addRegularMessage = () => {
       const newMessage = {
         address: addresses[Math.floor(Math.random() * addresses.length)],
@@ -254,7 +252,6 @@ export function TrollBox() {
       })
     }
 
-    // Move addSpamMessage inside useEffect
     const addSpamMessage = () => {
       setChatMessages(prev => {
         const newMessage = {
